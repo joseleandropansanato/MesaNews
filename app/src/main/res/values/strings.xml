@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Mesa News</string>
+    <string name="user">User</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="apply">Apply</string>
+    <string name="write_user">Write your User</string>
+    <string name="write_pass">Write your Password</string>
+    <string name="pass_not_correct">The pass is not correct</string>
+    <string name="confirm_password">Confirm the password</string>
+</resources>
