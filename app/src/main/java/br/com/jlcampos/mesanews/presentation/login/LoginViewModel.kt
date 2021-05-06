@@ -32,20 +32,10 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
                         .apiSignin
                         .signin(user, pwd)
 
-                    val myResult: MyResult<Signin?>
-
-                    if (resposta.code() == 200) {
-
-                        myResult = MyResult.success(resposta.body())
-
-                    } else {
-
-                        myResult = MyResult.success(Signin(
+                    val myResult: MyResult<Signin?> = MyResult.success(Signin(
                             code = resposta.code().toString(),
                             message = resposta.message(),
-                            token = null))
-
-                    }
+                            token = resposta.body()?.token))
 
                     signinLiveData.postValue(myResult)
 

@@ -12,7 +12,6 @@ class Constants private constructor(){
 
         const val AUTHORIZATION = "Authorization"
         const val BEARER = "Bearer "
-        const val TOKEN_TESTE = "${BEARER}eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MjU5LCJlbWFpbCI6ImRpbWFzLmdhYnJpZWxAenJvYmFuay5jb20uYnIifQ.a3j7sRx8FIedZCfDGLocduOYpcibfIenX7TVJjv6Sis"
 
         const val QUERY_PAGE_SIZE = 20
 

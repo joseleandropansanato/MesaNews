@@ -1,5 +1,6 @@
 package br.com.jlcampos.mesanews.presentation.feed
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -70,6 +71,12 @@ class FeedActivity : AppCompatActivity(), View.OnClickListener {
             Toast.makeText(this, news.description, Toast.LENGTH_LONG).show()
         }
 
+        myAdapter.setOnItemFavClickListener { news, positior ->
+            Toast.makeText(this, news.favorite.toString(), Toast.LENGTH_SHORT).show()
+            news.favorite = !news.favorite
+            myAdapter.notifyItemChanged(positior)
+        }
+
         customCarousel()
     }
 
@@ -83,10 +90,10 @@ class FeedActivity : AppCompatActivity(), View.OnClickListener {
 
                         hideProgBarFeed()
 
-                        myResource.data?.let { it1 ->
+                        myResource.data?.let { myData ->
 
-                            myAdapter.differ.submitList(it1.news)
-                            val totalPages = it1.pagination.totalItems / Constants.QUERY_PAGE_SIZE + 2
+                            myAdapter.differ.submitList(myData.news)
+                            val totalPages = myData.pagination.totalItems / Constants.QUERY_PAGE_SIZE + 2
                             isLastPage = viewModel.newPage == totalPages
 
                             if (isLastPage) {
@@ -97,7 +104,7 @@ class FeedActivity : AppCompatActivity(), View.OnClickListener {
 
                     Status.ERROR -> {
                         hideProgBarFeed()
-                        wrong(it.message!!)
+                        wrong(myResource.message!!)
                     }
 
                     Status.LOADING -> {
@@ -108,18 +115,18 @@ class FeedActivity : AppCompatActivity(), View.OnClickListener {
         })
 
         viewModel.hihlightLiveData.observe(this, {
-            it?.let { myRresource ->
-                when (myRresource.status) {
+            it?.let { myResource ->
+                when (myResource.status) {
 
                     Status.SUCCESS -> {
-                        it.data?.let { data -> viewModel.getCasousel(data.highlight) }
+                        myResource.data?.let { data -> viewModel.getCasousel(data.highlight) }
                         hideProgBarCarousel()
 
                     }
 
                     Status.ERROR -> {
                         hideProgBarCarousel()
-                        wrong(it.message!!)
+                        wrong(myResource.message!!)
                     }
 
                     Status.LOADING -> {
@@ -208,9 +215,9 @@ class FeedActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
     }
+
     var isLoading = false
     var isLastPage = false
-
     var isScrolling = false
 
     val scrollListener = object : RecyclerView.OnScrollListener() {

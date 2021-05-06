@@ -2,7 +2,6 @@ package br.com.jlcampos.mesanews.utils
 
 import android.content.Context
 import android.content.SharedPreferences
-import br.com.jlcampos.mesanews.utils.Constants
 
 class AppPrefs(context: Context) {
 

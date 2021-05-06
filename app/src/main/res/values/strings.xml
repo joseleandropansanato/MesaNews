@@ -1,14 +1,19 @@
 <resources>
     <string name="app_name">Mesa News</string>
     <string name="user">User</string>
+    <string name="user_name">Use Name</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="apply">Apply</string>
     <string name="write_user">Write your User</string>
+    <string name="write_name">Write your Name</string>
+    <string name="write_email">Write your Email</string>
     <string name="write_pass">Write your Password</string>
     <string name="pass_not_correct">The pass is not correct</string>
     <string name="confirm_password">Confirm the password</string>
     <string name="logout">Logout</string>
     <string name="disconnected">Disconnected</string>
+    <string name="name">Name</string>
+    <string name="email">your@email.com</string>
 </resources>

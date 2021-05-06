@@ -19,5 +19,6 @@ data class News (
     @SerializedName(Constants.news_data_url)
     var url: String,
     @SerializedName(Constants.news_data_image_url)
-    var imageUrl: String
+    var imageUrl: String,
+    var favorite: Boolean = false
 )

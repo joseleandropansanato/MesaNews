@@ -1,5 +1,6 @@
 package br.com.jlcampos.mesanews.presentation.login
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -72,25 +73,25 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             binding.loginBtRegister -> {
-                startActivity(Intent(this, CadastroActivity::class.java))
+                startActivityForResult(Intent(this, CadastroActivity::class.java), CadastroActivity.LAUNCH_SECOND_ACTIVITY)
             }
         }
     }
 
     private fun myObservers() {
         viewModel.signinLiveData.observe(this, {
-            it?.let { myResouce ->
-                when (myResouce.status) {
+            it?.let { myResource ->
+                when (myResource.status) {
 
                     Status.SUCCESS -> {
                         hideProgressBar()
 
-                        it.data.let { signin ->
+                        myResource.data.let { signin ->
 
                             if (signin != null && !signin.token.isNullOrEmpty()) {
                                 darAcesso(signin.token)
                             } else {
-                                wrong(/*signin?.code + " - " +*/ signin?.message!!)
+                                wrong(/*signin?.code + " - " +*/ signin?.message)
                             }
 
                         }
@@ -99,7 +100,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
                     Status.ERROR -> {
                         hideProgressBar()
-                        wrong(it.message!!)
+                        wrong(myResource.message!!)
                     }
 
                     Status.LOADING -> {
@@ -111,20 +112,21 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         })
 
         viewModel.loggedLiveData.observe(this, {
-            it?.let {
-                when(it.status) {
+            it?.let { myResource ->
+
+                when(myResource.status) {
 
                     Status.SUCCESS -> {
-                        if (it.data!!) {
+                        if (myResource.data!!) {
                             goFeed()
                         } else {
-                            wrong(it.message!!)
+                            wrong(myResource.message!!)
                         }
                     }
 
                     Status.ERROR -> {
                         hideProgressBar()
-                        wrong(it.message!!)
+                        wrong(myResource.message!!)
                     }
 
                     Status.LOADING -> {
@@ -151,7 +153,17 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         finish()
     }
 
-    private fun wrong(msg: String) {
-        Toast.makeText(this@LoginActivity, msg, Toast.LENGTH_LONG).show()
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == CadastroActivity.LAUNCH_SECOND_ACTIVITY) {
+            if (resultCode == Activity.RESULT_OK) {
+                darAcesso(data?.getStringExtra(CadastroActivity.EXTRA_TOKEN))
+            }
+        }
+    }
+
+    private fun wrong(msg: String?) {
+        Toast.makeText(this@LoginActivity, msg ?: "Oops!", Toast.LENGTH_LONG).show()
     }
 }

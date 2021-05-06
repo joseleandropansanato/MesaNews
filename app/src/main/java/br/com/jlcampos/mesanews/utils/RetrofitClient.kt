@@ -1,5 +1,6 @@
 package br.com.jlcampos.mesanews.utils
 
+import br.com.jlcampos.mesanews.data.repository.CadastroInterface
 import br.com.jlcampos.mesanews.data.repository.FeedInterface
 import br.com.jlcampos.mesanews.data.repository.LoginInterface
 import okhttp3.OkHttpClient
@@ -29,6 +30,9 @@ class RetrofitClient {
 
     val apiSignin: LoginInterface
         get() = retrofit.create(LoginInterface::class.java)
+
+    val apiSignup: CadastroInterface
+        get() = retrofit.create(CadastroInterface::class.java)
 
     companion object {
         private var mInstance: RetrofitClient? = null

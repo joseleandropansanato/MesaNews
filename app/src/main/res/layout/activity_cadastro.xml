@@ -13,7 +13,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:padding="16dp">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -22,25 +22,45 @@
                 android:id="@+id/cad_et_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/user"/>
+                android:hint="@string/name"
+                app:layout_constraintTop_toTopOf="parent"/>
+            <EditText
+                android:id="@+id/cad_et_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email"
+                app:layout_constraintTop_toBottomOf="@id/cad_et_user"/>
             <EditText
                 android:id="@+id/cad_et_pass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                app:layout_constraintTop_toBottomOf="@id/cad_et_email"/>
             <EditText
                 android:id="@+id/cad_et_sec_pass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/confirm_password"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                app:layout_constraintTop_toBottomOf="@id/cad_et_pass"/>
+            <ProgressBar
+                android:id="@+id/cad_pb_apply"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:padding="8dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toTopOf="@id/cad_bt_apply"
+                app:layout_constraintStart_toStartOf="@id/cad_bt_apply"
+                app:layout_constraintEnd_toEndOf="@id/cad_bt_apply"
+                app:layout_constraintBottom_toBottomOf="@id/cad_bt_apply"/>
             <Button
                 android:id="@+id/cad_bt_apply"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/apply"/>
-        </LinearLayout>
+                android:text="@string/apply"
+                app:layout_constraintTop_toBottomOf="@id/cad_et_sec_pass"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
