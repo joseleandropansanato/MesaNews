@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.jlcampos.mesanews.databinding.ActivityFeedBinding
 import br.com.jlcampos.mesanews.presentation.adapter.NewsAdapter
+import br.com.jlcampos.mesanews.utils.SecurityUtils
 import br.com.jlcampos.mesanews.utils.Constants
 import br.com.jlcampos.mesanews.utils.Status
 import kotlinx.coroutines.CoroutineScope
@@ -20,7 +21,7 @@ import org.imaginativeworld.whynotimagecarousel.CarouselItem
 import org.imaginativeworld.whynotimagecarousel.CarouselOnScrollListener
 import org.imaginativeworld.whynotimagecarousel.OnItemClickListener
 
-class FeedActivity : AppCompatActivity() {
+class FeedActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityFeedBinding
 
@@ -42,6 +43,15 @@ class FeedActivity : AppCompatActivity() {
         getHighlight()
     }
 
+    override fun onClick(view: View) {
+        when(view) {
+            binding.feedBtLogout -> {
+                SecurityUtils().logout(this@FeedActivity)
+                finish()
+            }
+        }
+    }
+
     private fun getFeedNews(perPage: String = "", publishedAt: String = "") {
         viewModel.getFeed(perPage, publishedAt)
     }
@@ -53,6 +63,8 @@ class FeedActivity : AppCompatActivity() {
     private fun myUI() {
 
         updateListRv()
+
+        binding.feedBtLogout.setOnClickListener(this@FeedActivity)
 
         myAdapter.setOnItemClickListener { news ->
             Toast.makeText(this, news.description, Toast.LENGTH_LONG).show()
@@ -196,9 +208,9 @@ class FeedActivity : AppCompatActivity() {
             }
         }
     }
-
     var isLoading = false
     var isLastPage = false
+
     var isScrolling = false
 
     val scrollListener = object : RecyclerView.OnScrollListener() {

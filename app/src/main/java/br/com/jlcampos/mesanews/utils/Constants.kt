@@ -5,6 +5,9 @@ class Constants private constructor(){
 
         const val IDENTIFICATION = "MesaNews"
 
+        const val MY_TOKEN = "MyToken"
+        const val LOGGED = "Logged"
+
         const val URL = "https://mesa-news-api.herokuapp.com"
 
         const val AUTHORIZATION = "Authorization"

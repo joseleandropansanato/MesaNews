@@ -1,6 +1,7 @@
 package br.com.jlcampos.mesanews.utils
 
 import br.com.jlcampos.mesanews.data.repository.FeedInterface
+import br.com.jlcampos.mesanews.data.repository.LoginInterface
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -25,6 +26,9 @@ class RetrofitClient {
 
     val apiFeed: FeedInterface
         get() = retrofit.create(FeedInterface::class.java)
+
+    val apiSignin: LoginInterface
+        get() = retrofit.create(LoginInterface::class.java)
 
     companion object {
         private var mInstance: RetrofitClient? = null

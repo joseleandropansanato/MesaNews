@@ -13,7 +13,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:padding="16dp">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -22,24 +22,38 @@
                 android:id="@+id/login_et_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/user"/>
+                android:hint="@string/user"
+                app:layout_constraintTop_toTopOf="parent"/>
             <EditText
                 android:id="@+id/login_et_pass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                app:layout_constraintTop_toBottomOf="@id/login_et_user"/>
             <Button
                 android:id="@+id/login_bt_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/login"/>
+                android:text="@string/login"
+                app:layout_constraintTop_toBottomOf="@id/login_et_pass"/>
+            <ProgressBar
+                android:id="@+id/login_pb_login"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:padding="8dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toTopOf="@id/login_bt_login"
+                app:layout_constraintStart_toStartOf="@id/login_bt_login"
+                app:layout_constraintEnd_toEndOf="@id/login_bt_login"
+                app:layout_constraintBottom_toBottomOf="@id/login_bt_login"/>
             <Button
                 android:id="@+id/login_bt_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/register"/>
-        </LinearLayout>
+                android:text="@string/register"
+                app:layout_constraintTop_toBottomOf="@id/login_bt_login"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

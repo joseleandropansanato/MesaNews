@@ -9,4 +9,6 @@
     <string name="write_pass">Write your Password</string>
     <string name="pass_not_correct">The pass is not correct</string>
     <string name="confirm_password">Confirm the password</string>
+    <string name="logout">Logout</string>
+    <string name="disconnected">Disconnected</string>
 </resources>
