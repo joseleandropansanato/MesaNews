@@ -3,7 +3,6 @@ package br.com.jlcampos.mesanews.presentation.cadastro
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import br.com.jlcampos.mesanews.data.model.Signin
 import br.com.jlcampos.mesanews.data.model.Signup
 import br.com.jlcampos.mesanews.utils.MyResult
 import br.com.jlcampos.mesanews.utils.RetrofitClient

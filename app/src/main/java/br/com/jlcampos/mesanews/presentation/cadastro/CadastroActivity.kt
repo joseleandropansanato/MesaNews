@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import br.com.jlcampos.mesanews.R
 import br.com.jlcampos.mesanews.databinding.ActivityCadastroBinding
-import br.com.jlcampos.mesanews.utils.AppPrefs
 import br.com.jlcampos.mesanews.utils.Status
 
 class CadastroActivity : AppCompatActivity(), View.OnClickListener {
@@ -20,7 +19,6 @@ class CadastroActivity : AppCompatActivity(), View.OnClickListener {
 
     companion object {
         const val LAUNCH_SECOND_ACTIVITY = 1
-        const val EXTRA_VALIDATE = "EXTRA_VALIDATE"
         const val EXTRA_TOKEN = "EXTRA_TOKEN"
     }
 
@@ -69,7 +67,7 @@ class CadastroActivity : AppCompatActivity(), View.OnClickListener {
 
                 } else {
 
-                    if (pass.replace(" ","") != cPass.toString().replace(" ","")
+                    if (pass.replace(" ","") != cPass.replace(" ","")
                     ) {
                         wrong(getString(R.string.pass_not_correct))
                     } else {

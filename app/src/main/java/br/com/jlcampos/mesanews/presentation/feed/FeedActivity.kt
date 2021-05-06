@@ -1,6 +1,5 @@
 package br.com.jlcampos.mesanews.presentation.feed
 
-import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View

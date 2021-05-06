@@ -7,6 +7,7 @@ import br.com.jlcampos.mesanews.data.model.Feed
 import br.com.jlcampos.mesanews.data.model.Highlight
 import br.com.jlcampos.mesanews.data.model.News
 import br.com.jlcampos.mesanews.utils.AppPrefs
+import br.com.jlcampos.mesanews.utils.Constants
 import br.com.jlcampos.mesanews.utils.MyResult
 import br.com.jlcampos.mesanews.utils.RetrofitClient
 import kotlinx.coroutines.CoroutineScope
@@ -36,7 +37,7 @@ class FeedViewModel(application: Application) : AndroidViewModel(application) {
                     val resposta = RetrofitClient
                         .instance!!
                         .apiFeed
-                        .getNews(newPage.toString(), perPage, publishedAt, AppPrefs(getApplication()).getToken()!!).body()
+                        .getNews(newPage.toString(), perPage, publishedAt,Constants.BEARER + AppPrefs(getApplication()).getToken()!!).body()
 
                     val myResult = MyResult.success(resposta)
 
@@ -75,7 +76,7 @@ class FeedViewModel(application: Application) : AndroidViewModel(application) {
                     val resposta = RetrofitClient
                         .instance!!
                         .apiFeed
-                        .getHighlights(AppPrefs(getApplication()).getToken()!!).body()
+                        .getHighlights(Constants.BEARER + AppPrefs(getApplication()).getToken()!!).body()
 
                     val myResult = MyResult.success(resposta)
 
