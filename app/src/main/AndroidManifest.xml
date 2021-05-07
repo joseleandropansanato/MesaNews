@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MesaNews"
         android:usesCleartextTraffic="true">
-        <activity android:name=".presentation.cadastro.CadastroActivity"></activity>
+        <activity android:name=".presentation.favorites.FavoritesActivity"></activity>
+        <activity android:name=".presentation.cadastro.CadastroActivity" />
         <activity android:name=".presentation.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

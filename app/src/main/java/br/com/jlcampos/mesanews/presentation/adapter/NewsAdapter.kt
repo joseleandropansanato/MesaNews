@@ -24,7 +24,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
         viewHolder.bindView(differ.currentList[position], position)
     }
 
-    private val differCallbak = object : DiffUtil.ItemCallback<News>(){
+    private val differCallback = object : DiffUtil.ItemCallback<News>(){
         override fun areItemsTheSame(oldItem: News, newItem: News): Boolean {
             return oldItem.url == newItem.url
         }
@@ -34,7 +34,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
         }
     }
 
-    val differ = AsyncListDiffer(this, differCallbak)
+    val differ = AsyncListDiffer(this, differCallback)
 
     private var onItemClickListener: ((News) -> Unit)? = null
 
@@ -63,7 +63,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
             title.text = news.title
             author.text  = news.author
             description.text = news.description
-            Picasso.get().load(news.imageUrl).error(R.drawable.ic_launcher_foreground).into(img)
+            Picasso.get().load(news.imageUrl).error(R.drawable.ic_baseline_photo_24).into(img)
             favorite.setImageResource(if (news.favorite) R.drawable.ic_baseline_favorite_24 else R.drawable.ic_baseline_favorite_border_24)
 
             cl.setOnClickListener{

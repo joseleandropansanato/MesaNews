@@ -15,6 +15,13 @@ class AppPrefs(context: Context) {
 
     fun getToken() = prefs.getString(Constants.MY_TOKEN, null)
 
+    fun setFavorite(favorite: String?) {
+        editor.putString(Constants.MY_FAVORITE, favorite)
+        editor.commit()
+    }
+
+    fun getFavorite() = prefs.getString(Constants.MY_FAVORITE, "{}")
+
     fun setLogged(logged: Boolean) {
         editor.putBoolean(Constants.LOGGED, logged)
         editor.commit()
@@ -24,6 +31,7 @@ class AppPrefs(context: Context) {
 
     fun logout() {
         setToken(null)
+        setFavorite(null)
         setLogged(false)
     }
 }

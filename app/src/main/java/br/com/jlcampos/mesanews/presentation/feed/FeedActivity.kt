@@ -1,17 +1,20 @@
 package br.com.jlcampos.mesanews.presentation.feed
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.AbsListView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.jlcampos.mesanews.databinding.ActivityFeedBinding
 import br.com.jlcampos.mesanews.presentation.adapter.NewsAdapter
-import br.com.jlcampos.mesanews.utils.SecurityUtils
+import br.com.jlcampos.mesanews.presentation.favorites.FavoritesActivity
 import br.com.jlcampos.mesanews.utils.Constants
+import br.com.jlcampos.mesanews.utils.SecurityUtils
 import br.com.jlcampos.mesanews.utils.Status
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -44,10 +47,14 @@ class FeedActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(view: View) {
-        when(view) {
+        when (view) {
             binding.feedBtLogout -> {
                 SecurityUtils().logout(this@FeedActivity)
                 finish()
+            }
+
+            binding.feedBtFavorites -> {
+                startActivity(Intent(this@FeedActivity, FavoritesActivity::class.java))
             }
         }
     }
@@ -65,15 +72,18 @@ class FeedActivity : AppCompatActivity(), View.OnClickListener {
         updateListRv()
 
         binding.feedBtLogout.setOnClickListener(this@FeedActivity)
+        binding.feedBtFavorites.setOnClickListener(this@FeedActivity)
 
         myAdapter.setOnItemClickListener { news ->
-            Toast.makeText(this, news.description, Toast.LENGTH_LONG).show()
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse(news.url)
+            startActivity(i)
         }
 
-        myAdapter.setOnItemFavClickListener { news, positior ->
-            Toast.makeText(this, news.favorite.toString(), Toast.LENGTH_SHORT).show()
+        myAdapter.setOnItemFavClickListener { news, position ->
             news.favorite = !news.favorite
-            myAdapter.notifyItemChanged(positior)
+            if (news.favorite) viewModel.addFavorite(news) else viewModel.removeFavorite(news)
+            myAdapter.notifyItemChanged(position)
         }
 
         customCarousel()
@@ -219,7 +229,7 @@ class FeedActivity : AppCompatActivity(), View.OnClickListener {
     var isLastPage = false
     var isScrolling = false
 
-    val scrollListener = object : RecyclerView.OnScrollListener() {
+    private val scrollListener = object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
 

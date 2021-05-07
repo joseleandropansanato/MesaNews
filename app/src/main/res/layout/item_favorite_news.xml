@@ -7,70 +7,70 @@
     android:paddingStart="16dp"
     android:paddingTop="8dp"
     android:paddingEnd="16dp"
-    android:paddingBottom="8dp"
-    >
+    android:paddingBottom="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/item_news_cl"
+        android:id="@+id/item_favorite_news_cl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/item_news_img"
+            android:id="@+id/item_favorite_news_img"
             android:layout_width="100dp"
             android:layout_height="80dp"
-            android:scaleType="centerCrop"
-            tools:src="@drawable/ic_launcher_background"
             android:contentDescription="@string/ilustration"
+            android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_launcher_background" />
 
         <TextView
-            android:id="@+id/item_news_tv_title"
+            android:id="@+id/item_favorite_news_tv_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:maxLines="2"
-            android:textStyle="bold"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="38dp"
+            android:maxLines="2"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/item_news_img"
+            app:layout_constraintStart_toEndOf="@id/item_favorite_news_img"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/item_news_tv_author"
+            android:id="@+id/item_favorite_news_tv_author"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:maxLines="2"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="@id/item_news_tv_title"
-            app:layout_constraintStart_toStartOf="@id/item_news_tv_title"
-            app:layout_constraintTop_toBottomOf="@id/item_news_tv_title" />
+            android:maxLines="2"
+            app:layout_constraintEnd_toEndOf="@id/item_favorite_news_tv_title"
+            app:layout_constraintStart_toStartOf="@id/item_favorite_news_tv_title"
+            app:layout_constraintTop_toBottomOf="@id/item_favorite_news_tv_title" />
 
         <TextView
-            android:id="@+id/item_news_tv_description"
+            android:id="@+id/item_favorite_news_tv_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:maxLines="2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/item_news_tv_title"
-            app:layout_constraintTop_toBottomOf="@id/item_news_tv_author" />
+            app:layout_constraintStart_toStartOf="@id/item_favorite_news_tv_title"
+            app:layout_constraintTop_toBottomOf="@id/item_favorite_news_tv_author" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
-        android:id="@+id/item_news_iv_favorite"
+        android:id="@+id/item_favorite_news_iv_favorite"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:background="@color/purple_500"
+        android:contentDescription="@string/favorites"
         android:padding="8dp"
         android:src="@drawable/ic_baseline_favorite_border_24"
-        android:contentDescription="@string/favorites"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
